@@ -39,7 +39,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".FirstInstallActivity"></activity>
+        <activity android:name=".FirstInstallActivity"/>
     </application>
 
 </manifest>
