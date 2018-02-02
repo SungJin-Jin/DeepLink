@@ -9,14 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InstallActivity">
+        <activity
+            android:name=".activity.InflowActivity"
+            android:label="Inflow">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -30,8 +34,12 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activity.InstallActivity"
+            android:label="Install" />
+
         <receiver
-            android:name=".ReferrerReceiver"
+            android:name=".receiver.ReferrerReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -39,7 +47,6 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".FirstInstallActivity"/>
     </application>
 
 </manifest>

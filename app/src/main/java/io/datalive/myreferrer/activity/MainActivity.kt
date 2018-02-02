@@ -1,7 +1,8 @@
-package io.datalive.myreferrer
+package io.datalive.myreferrer.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import io.datalive.myreferrer.R
 
 class MainActivity : AppCompatActivity() {
 
