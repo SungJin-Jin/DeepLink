@@ -17,13 +17,11 @@ class ReferrerReceiver : BroadcastReceiver() {
         intent.let {
             when (intent.action) {
                 ACTION_INSTALL_REFERRER -> {
-                    it.getString(KEY_REFERRER).let {
-                        context.startActivity(
-                                Intent(context, InstallActivity::class.java)
-                                        .putExtra(KEY_REFERRER, it)
-                                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        )
-                    }
+                    val install = Intent(context, InstallActivity::class.java)
+                    context.startActivity(
+                            install.putExtra(KEY_REFERRER, intent.getString(KEY_REFERRER))
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    )
                 }
             }
         }
