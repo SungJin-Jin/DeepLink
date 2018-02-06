@@ -1,4 +1,4 @@
-package io.datalive.myreferrer.extension
+package io.datalive.deeplink.extension
 
 import android.content.Context
 import android.content.Intent

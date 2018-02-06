@@ -1,4 +1,4 @@
-package io.datalive.myreferrer.singletons
+package io.datalive.deeplink.singletons
 
 
 object Configs {

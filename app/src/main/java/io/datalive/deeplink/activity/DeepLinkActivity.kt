@@ -1,9 +1,9 @@
-package io.datalive.myreferrer.activity
+package io.datalive.deeplink.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import io.datalive.myreferrer.R
-import io.datalive.myreferrer.extension.logging
+import io.datalive.deeplink.R
+import io.datalive.deeplink.extension.logging
 import kotlinx.android.synthetic.main.activity_deep_link.*
 
 class DeepLinkActivity : AppCompatActivity() {

@@ -1,11 +1,11 @@
-package io.datalive.myreferrer.receiver
+package io.datalive.deeplink.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import io.datalive.myreferrer.activity.InstallActivity
-import io.datalive.myreferrer.extension.getString
-import io.datalive.myreferrer.singletons.Configs.KEY_REFERRER
+import io.datalive.deeplink.activity.InstallActivity
+import io.datalive.deeplink.extension.getString
+import io.datalive.deeplink.singletons.Configs.KEY_REFERRER
 
 class ReferrerReceiver : BroadcastReceiver() {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.datalive.myreferrer">
+    package="io.datalive.deeplink">
 
     <application
         android:allowBackup="true"
@@ -31,7 +31,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data
-                    android:host="www.mydeeplink.com"
+                    android:host="www.deeplink.com"
                     android:scheme="http"
                     android:path="/details"/>
                 <data android:scheme="https" />
