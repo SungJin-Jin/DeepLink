@@ -3,8 +3,6 @@ package io.datalive.myreferrer.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import io.datalive.myreferrer.R
-import io.datalive.myreferrer.extension.getString
-import io.datalive.myreferrer.singletons.Configs.KEY_REFERRER
 import kotlinx.android.synthetic.main.activity_install.*
 
 class InstallActivity : AppCompatActivity() {
@@ -13,8 +11,6 @@ class InstallActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_install)
 
-        intent.getString(KEY_REFERRER).let {
-            txtReferrer.text = "Referrer : $it"
-        }
+        txtContent.text = intent.data.query
     }
 }
