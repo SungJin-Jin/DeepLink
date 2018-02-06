@@ -1,9 +1,11 @@
 package io.datalive.myreferrer.extension
 
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import com.google.firebase.analytics.FirebaseAnalytics
 
 
-fun Activity.inflowValue(key: String) = intent.data.getQueryParameter(key)
+fun Context.logging(key: String, bundle: Bundle) = FirebaseAnalytics.getInstance(this).logEvent(key, bundle)
 
 fun Intent.getString(key: String) = extras.getString(key)

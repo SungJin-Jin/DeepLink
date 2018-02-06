@@ -32,7 +32,8 @@
 
                 <data
                     android:host="www.mydeeplink.com"
-                    android:scheme="http" />
+                    android:scheme="http"
+                    android:path="/details"/>
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
