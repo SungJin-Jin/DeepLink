@@ -11,6 +11,8 @@ class InstallActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_install)
 
-        txtContent.text = intent.data.query
+        with(intent.extras) {
+            txtContent.text = keySet().joinToString { getString(it) }
+        }
     }
 }
