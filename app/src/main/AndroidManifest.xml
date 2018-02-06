@@ -31,9 +31,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data
-                    android:host="www.deeplink.com"
-                    android:scheme="http"
-                    android:path="/details"/>
+                    android:host="nethrureferrer-4b919.firebaseapp.com"
+                    android:scheme="http" />
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
