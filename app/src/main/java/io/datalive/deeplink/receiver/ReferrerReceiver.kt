@@ -3,7 +3,11 @@ package io.datalive.deeplink.receiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import io.datalive.deeplink.activity.InstallActivity
+import android.net.Uri
+import io.datalive.deeplink.activity.AfterInstallActivity
+import io.datalive.deeplink.activity.DeepLinkActivity
+import io.datalive.deeplink.activity.DynamicLinkActivity
+import io.datalive.deeplink.extension.toast
 
 class ReferrerReceiver : BroadcastReceiver() {
 
@@ -11,21 +15,44 @@ class ReferrerReceiver : BroadcastReceiver() {
         private val ACTION_INSTALL_REFERRER = "com.android.vending.INSTALL_REFERRER"
     }
 
-    override fun onReceive(context: Context, intent: Intent) {
-        intent.let {
-            when (intent.action) {
-                ACTION_INSTALL_REFERRER -> {
-                    var intent = Intent(context, InstallActivity::class.java)
+    override fun onReceive(context: Context, receiverIntent: Intent) {
+        when (receiverIntent.action) {
+            ACTION_INSTALL_REFERRER -> {
+                with(receiverIntent.extras) {
+                    context.toast(keySet().joinToString { key -> getString(key) })
 
-                    with(intent) {
-                        data.queryParameterNames.forEach { putExtra(it, data.getQueryParameter(it)) }
+                    var paramMap = toMap(getString("referrer"))
 
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                    context.toast(paramMap.toString())
 
-                        context.startActivity(this)
+                    val destIntent = when (paramMap["where"]) {
+                        "deepLink" -> Intent(context, DeepLinkActivity::class.java)
+                        "dynamicLink" -> Intent(context, DynamicLinkActivity::class.java)
+                        else -> Intent(context, AfterInstallActivity::class.java)
                     }
+
+                    moveActivity(destIntent, receiverIntent, context)
                 }
             }
         }
     }
+
+    private fun toMap(queryString: String): Map<String, String> {
+        return queryString.split("&").map {
+            it.split("=")
+        }.map { it[0] to it[1] }.toMap()
+    }
+
+    private fun moveActivity(destIntent: Intent, receiverIntent: Intent, context: Context) {
+        with(destIntent) {
+            destIntent.data = Uri.parse("http://nethrureferrer-4b919.firebaseapp.com?" +
+                    "${receiverIntent.extras.get("referrer")}"
+            )
+
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+            context.startActivity(this)
+        }
+    }
 }
+

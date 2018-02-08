@@ -14,7 +14,6 @@ class DeepLinkActivity : AppCompatActivity() {
 
         txtContent.text = intent.data.query
 
-        intent.loggingQueryParams(this, "deep_link")
+        loggingQueryParams(intent, "deep_link")
     }
-
 }

@@ -14,6 +14,6 @@ class DynamicLinkActivity : AppCompatActivity() {
 
         txtContent.text = intent.data.query
 
-        intent.loggingQueryParams(this, "dynamic_link")
+        loggingQueryParams(intent, "dynamic_link")
     }
 }
