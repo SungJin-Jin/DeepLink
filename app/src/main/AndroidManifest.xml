@@ -9,6 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <receiver
+            android:name=".receiver.ReferrerReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,20 +42,28 @@
 
                 <data
                     android:host="nethrureferrer-4b919.firebaseapp.com"
+                    android:path="/deeplink"
                     android:scheme="http" />
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".receiver.ReferrerReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver>
+        <activity
+            android:name=".activity.DynamicLinkActivity"
+            android:label="Dynamic Link">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="nethrureferrer-4b919.firebaseapp.com"
+                    android:path="/dynamiclink"
+                    android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

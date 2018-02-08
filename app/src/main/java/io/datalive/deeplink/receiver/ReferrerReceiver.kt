@@ -15,9 +15,7 @@ class ReferrerReceiver : BroadcastReceiver() {
         intent.let {
             when (intent.action) {
                 ACTION_INSTALL_REFERRER -> {
-                    if (intent.data.query == null) return
-
-                    val intent = Intent(context, InstallActivity::class.java)
+                    var intent = Intent(context, InstallActivity::class.java)
 
                     with(intent) {
                         data.queryParameterNames.forEach { putExtra(it, data.getQueryParameter(it)) }
