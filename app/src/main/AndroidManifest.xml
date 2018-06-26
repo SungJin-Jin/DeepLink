@@ -19,7 +19,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.EmptyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

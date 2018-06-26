@@ -4,38 +4,29 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import io.datalive.deeplink.activity.AfterInstallActivity
-import io.datalive.deeplink.activity.DeepLinkActivity
-import io.datalive.deeplink.activity.DynamicLinkActivity
-import io.datalive.deeplink.extension.moveActivityWithExtraData
+import io.datalive.deeplink.extensions.queryToMap
 
 class ReferrerReceiver : BroadcastReceiver() {
 
     companion object {
         private const val ACTION_INSTALL_REFERRER = "com.android.vending.INSTALL_REFERRER"
+
+        private const val KEY_REFERRER = "referrer"
     }
 
-    override fun onReceive(context: Context, receiverIntent: Intent) {
-        when (receiverIntent.action) {
-            ACTION_INSTALL_REFERRER -> {
-                with(receiverIntent.extras) {
-                    val paramMap = toMap(getString("referrer"))
-
-                    val destIntent = when (paramMap["where"]) {
-                        "deepLink" -> Intent(context, DeepLinkActivity::class.java)
-                        "dynamicLink" -> Intent(context, DynamicLinkActivity::class.java)
-                        else -> Intent(context, AfterInstallActivity::class.java)
-                    }
-
-                    context.moveActivityWithExtraData(destIntent, receiverIntent)
-                }
-            }
+    override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action == ACTION_INSTALL_REFERRER) {
+            context.startActivity(createDestination(context, getExtras(intent)))
         }
     }
 
-    private fun toMap(queryString: String) =
-            queryString.split("&").map {
-                it.split("=")
-            }.map { it[0] to it[1] }.toMap()
+    private fun getExtras(intent: Intent) = intent.extras.getString(KEY_REFERRER).queryToMap()
 
+    private fun createDestination(context: Context, params: Map<String, String>): Intent {
+        return Intent(context, AfterInstallActivity::class.java).apply {
+            params.forEach { putExtra(it.key, it.value) }
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+    }
 }
 
