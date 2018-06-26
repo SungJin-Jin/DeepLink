@@ -7,6 +7,7 @@ buildscript {
     ext.retrofitVersion = '2.1.0'
     ext.rxVersion = '1.2.1'
     ext.kotlinVersion = '1.1.51'
+
     repositories {
         google()
         jcenter()
@@ -14,7 +15,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath 'com.google.gms:google-services:3.1.0'
+        classpath 'com.google.gms:google-services:3.1.1'
         classpath 'com.google.firebase:firebase-plugins:1.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
